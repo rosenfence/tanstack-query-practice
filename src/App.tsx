@@ -1,5 +1,6 @@
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fetchData } from './Api';
+import { DataType } from './Interface';
 
 function App() {
   const queryClient = new QueryClient();
@@ -12,7 +13,7 @@ function App() {
 }
 
 function Datas() {
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data } = useQuery<DataType>({
     queryKey: ['data', 1],
     queryFn: fetchData,
   });
@@ -23,7 +24,7 @@ function Datas() {
 
   return (
     <div>
-      <span>{data.content}</span>
+      <span>{data!.content}</span>
     </div>
   );
 }
