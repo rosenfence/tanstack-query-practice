@@ -3,19 +3,21 @@ import { fetchData } from './Api';
 import { DataType } from './Interface';
 
 function Datas() {
-  const { isLoading, error, data } = useQuery<DataType>({
-    queryKey: ['data', 1],
+  const { isLoading, error, data } = useQuery<DataType[]>({
+    queryKey: ['data'],
     queryFn: fetchData,
   });
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <div>Loading...</div>;
 
   if (error) return 'Error';
 
   return (
-    <div>
-      <span>{data!.content}</span>
-    </div>
+    <>
+      {data!.map((a: DataType, i: number) => {
+        return <p key={i}>{a.title}</p>;
+      })}
+    </>
   );
 }
 

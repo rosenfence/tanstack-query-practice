@@ -3,7 +3,7 @@ import { DataType } from './Interface';
 export const fetchData = (): Promise<DataType> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      fetch('https://koreanjson.com/posts/1')
+      fetch('https://koreanjson.com/posts')
         .then((res) => {
           if (!res.ok) {
             throw new Error('Network response was not ok');
